@@ -38,7 +38,8 @@ class WebTests(unittest.TestCase):
         with urlopen(f"{self.base_url}/", timeout=3) as response:
             body = response.read().decode("utf-8")
             self.assertEqual(response.status, 200)
-            self.assertIn("Apply less.", body)
+            self.assertIn("Find the roles", body)
+            self.assertIn("Your shortlist", body)
             self.assertIn("default-src 'self'", response.headers["Content-Security-Policy"])
             self.assertEqual(response.headers["X-Frame-Options"], "DENY")
 

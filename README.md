@@ -15,6 +15,16 @@
   <a href="#中文说明">中文说明</a>
 </p>
 
+<p align="center">
+  <a href="docs/applyless-demo.mp4">
+    <img src="docs/applyless-demo.gif" alt="ApplyLess demo: rank job descriptions by resume evidence" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <sub>28-second demo · <a href="docs/applyless-demo.mp4">watch the full MP4</a></sub>
+</p>
+
 > **Status:** v0.1 alpha. The matching engine is transparent and intentionally
 > conservative. It supports pasted resume text and one or many job descriptions.
 
