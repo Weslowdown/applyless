@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rank job descriptions by evidence from your resume. Local-first, explainable, and no API key required.">
+  <meta name="theme-color" content="#f5f3ec">
+  <title>ApplyLess — stop spraying applications</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#workbench">Skip to the workspace</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="ApplyLess home">
+      <span class="brand-mark" aria-hidden="true">A↓</span>
+      <span>ApplyLess</span>
+    </a>
+    <div class="header-right">
+      <span class="local-pill"><span aria-hidden="true"></span> Runs locally</span>
+      <a class="text-link" href="#method">How it works</a>
+      <a class="text-link github-link" href="https://github.com/Weslowdown" rel="noreferrer">GitHub ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Evidence, not application spray</p>
+        <h1 id="hero-title">Apply less.<br><span>Interview more.</span></h1>
+        <p class="hero-lede">
+          Paste your resume and a pile of job descriptions. ApplyLess ranks the roles
+          worth your time, shows the evidence behind every match, and keeps your data
+          on this machine.
+        </p>
+        <div class="hero-actions">
+          <button class="button button-primary" id="heroSample" type="button">Try the sample</button>
+          <a class="button button-ghost" href="#workbench">Use my resume</a>
+        </div>
+        <ul class="proof-row" aria-label="Product principles">
+          <li><strong>0</strong> uploads</li>
+          <li><strong>1</strong> minute to triage</li>
+          <li><strong>∞</strong> JD comparisons</li>
+        </ul>
+      </div>
+
+      <div class="radar-card" aria-label="Illustration of ranked job matches">
+        <div class="radar-topline">
+          <span>SHORTLIST / TODAY</span>
+          <span class="live-dot">LIVE</span>
+        </div>
+        <div class="radar">
+          <div class="radar-ring ring-one"></div>
+          <div class="radar-ring ring-two"></div>
+          <div class="radar-ring ring-three"></div>
+          <div class="radar-axis axis-x"></div>
+          <div class="radar-axis axis-y"></div>
+          <div class="radar-sweep"></div>
+          <span class="radar-point point-one"><i>01</i></span>
+          <span class="radar-point point-two"><i>02</i></span>
+          <span class="radar-point point-three"><i>03</i></span>
+          <div class="radar-center">
+            <strong>3</strong>
+            <span>worth applying</span>
+          </div>
+        </div>
+        <div class="mini-shortlist">
+          <div>
+            <span class="mini-rank">01</span>
+            <p><strong>ML Intern</strong><small>must-haves: 5/5</small></p>
+            <b>88</b>
+          </div>
+          <div>
+            <span class="mini-rank">02</span>
+            <p><strong>Analytics Intern</strong><small>must-haves: 3/4</small></p>
+            <b>72</b>
+          </div>
+          <div>
+            <span class="mini-rank">03</span>
+            <p><strong>Design Intern</strong><small>skip for now</small></p>
+            <b>31</b>
+          </div>
+        </div>
+        <p class="radar-note"><span aria-hidden="true">↳</span> Ranked from your own resume evidence</p>
+      </div>
+    </section>
+
+    <section class="workbench" id="workbench" aria-labelledby="workbench-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Local workbench</p>
+          <h2 id="workbench-title">Build your shortlist.</h2>
+        </div>
+        <p class="section-note">No account. No model key. Nothing sent to a server outside this app.</p>
+      </div>
+
+      <form id="scoreForm" class="score-form">
+        <div class="input-card resume-card" id="resumeCard">
+          <span class="input-step">01 / YOUR PROOF</span>
+          <span class="input-title-row">
+            <label for="resume"><strong>Resume evidence</strong></label>
+            <span id="resumeCount" class="char-count">0 chars</span>
+          </span>
+          <span class="input-help">Paste résumé text. Concrete tools, actions, and outcomes produce better comparisons.</span>
+          <span class="file-tools">
+            <label class="file-button" for="resumeFile">Import resume</label>
+            <input class="visually-hidden" id="resumeFile" type="file" accept=".txt,.md,.docx,.pdf">
+            <span id="fileStatus" class="file-status">TXT, MD, DOCX included · PDF optional</span>
+          </span>
+          <textarea id="resume" name="resume" spellcheck="true" placeholder="Paste your resume here…" required></textarea>
+        </div>
+
+        <div class="input-card jobs-card">
+          <span class="input-step">02 / YOUR OPTIONS</span>
+          <span class="input-title-row">
+            <label for="jobs"><strong>Job descriptions</strong></label>
+            <span id="jobsCount" class="char-count">0 chars</span>
+          </span>
+          <span class="input-help">Paste one or many roles. Separate each one with a heading such as <code>=== Role | Company ===</code>.</span>
+          <textarea id="jobs" name="jobs" spellcheck="true" placeholder="Paste one or more job descriptions here…" required></textarea>
+        </div>
+
+        <div class="form-footer">
+          <p id="privacyNote" class="privacy-note">
+            <span class="lock-icon" aria-hidden="true">▣</span>
+            Your text stays in this local process and disappears when you close the page.
+          </p>
+          <div class="form-actions">
+            <button class="button button-quiet" id="sampleButton" type="button">Load sample</button>
+            <button class="button button-primary submit-button" id="submitButton" type="submit">
+              Rank my roles <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </form>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="results" id="results" hidden aria-labelledby="results-title">
+      <div class="results-heading">
+        <div>
+          <p class="eyebrow">Your next move</p>
+          <h2 id="results-title">The shortlist</h2>
+        </div>
+        <div class="result-actions">
+          <button class="button button-quiet" id="copyButton" type="button">Copy top summary</button>
+          <button class="button button-quiet" id="downloadButton" type="button">Download JSON</button>
+        </div>
+      </div>
+      <p id="resultMeta" class="result-meta"></p>
+      <div id="jobList" class="job-list"></div>
+      <p class="results-disclaimer">
+        Fit is not a hiring prediction. Use the gaps and evidence as prompts for your
+        own judgment. Never add experience you do not have.
+      </p>
+    </section>
+
+    <section class="method" id="method" aria-labelledby="method-title">
+      <div class="method-intro">
+        <p class="eyebrow">Under the hood</p>
+        <h2 id="method-title">Explainable by default.</h2>
+        <p>
+          Every score is traceable. ApplyLess extracts recognized requirements,
+          looks for source text in your resume, and weights must-haves more heavily
+          than preferences.
+        </p>
+      </div>
+      <div class="method-grid">
+        <article>
+          <span>01</span>
+          <h3>Find the signal</h3>
+          <p>Skills, tools, outcomes, and role language are extracted from the job description.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Anchor to evidence</h3>
+          <p>A match only counts when your resume contains a source line that supports it.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Rank the trade-offs</h3>
+          <p>Must-have coverage, preferred skills, proof quality, and title alignment shape the result.</p>
+        </article>
+      </div>
+      <p class="method-footnote">
+        ApplyLess v0.1 uses a transparent local rule set. It does not rank by age,
+        gender, nationality, school prestige, or other protected traits.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>ApplyLess</strong>
+      <span>Stop applying everywhere.</span>
+    </div>
+    <p>Local-first · MIT licensed · Built in public</p>
+  </footer>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
+

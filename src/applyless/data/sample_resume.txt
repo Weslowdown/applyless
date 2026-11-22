@@ -1,0 +1,20 @@
+Wen Li
+Data Science Student | Shanghai
+
+SUMMARY
+Data science student focused on problem-solving by turning product questions into testable analyses.
+
+EXPERIENCE
+Product Analytics Intern, PocketMall (2025)
+- Built a Python and SQL funnel analysis for 120k monthly users; reduced weekly reporting time by 35%.
+- Designed and analyzed an A/B test with 8,000 users, then presented the result to product and growth teams.
+- Built a pandas dashboard that helped the team prioritize two checkout improvements.
+
+PROJECTS
+Course Demand Radar
+- Used scikit-learn, pandas, and NumPy to cluster 4,200 course descriptions.
+- Wrote a short English report and presented findings to 30 classmates.
+
+SKILLS
+Python, SQL, pandas, NumPy, scikit-learn, A/B testing, statistics, data visualization, Excel, Git, English, Mandarin
+

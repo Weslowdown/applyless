@@ -1,0 +1,28 @@
+<svg width="1280" height="420" viewBox="0 0 1280 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ApplyLess: Apply less. Interview more.</title>
+  <desc id="desc">A cream developer-style banner with bold type and a local shortlist visualization.</desc>
+  <rect width="1280" height="420" fill="#F5F3EC"/>
+  <path d="M0 40H1280M0 100H1280M0 160H1280M0 220H1280M0 280H1280M0 340H1280M0 400H1280" stroke="#151611" stroke-opacity="0.055"/>
+  <path d="M40 0V420M100 0V420M160 0V420M220 0V420M280 0V420M340 0V420M400 0V420M460 0V420M520 0V420M580 0V420M640 0V420M700 0V420M760 0V420M820 0V420M880 0V420M940 0V420M1000 0V420M1060 0V420M1120 0V420M1180 0V420M1240 0V420" stroke="#151611" stroke-opacity="0.055"/>
+  <circle cx="69" cy="67" r="24" fill="#151611"/>
+  <text x="57" y="74" font-family="Arial, sans-serif" font-size="17" font-weight="800" fill="#C9FF56">A↓</text>
+  <text x="106" y="76" font-family="Arial, sans-serif" font-size="27" font-weight="800" fill="#151611">ApplyLess</text>
+  <text x="1022" y="73" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#55584E">LOCAL-FIRST / 0 UPLOADS</text>
+  <text x="64" y="218" font-family="Arial Black, Arial, sans-serif" font-size="86" font-weight="900" letter-spacing="-6" fill="#151611">APPLY LESS.</text>
+  <text x="64" y="310" font-family="Arial Black, Arial, sans-serif" font-size="86" font-weight="900" letter-spacing="-6" fill="#4169E1">INTERVIEW MORE.</text>
+  <text x="68" y="368" font-family="Arial, sans-serif" font-size="20" fill="#55584E">Rank job descriptions by evidence from your own resume.</text>
+  <rect x="916" y="118" width="300" height="226" rx="24" fill="#1B1D17" stroke="#151611" stroke-width="2"/>
+  <circle cx="1072" cy="218" r="58" stroke="#43473A"/>
+  <circle cx="1072" cy="218" r="98" stroke="#43473A"/>
+  <path d="M950 218H1198M1072 96V340" stroke="#43473A"/>
+  <circle cx="1072" cy="218" r="40" fill="#C9FF56"/>
+  <text x="1056" y="230" font-family="Arial, sans-serif" font-size="29" font-weight="900" fill="#151611">03</text>
+  <circle cx="985" cy="157" r="16" fill="#151611" stroke="#FF715B" stroke-width="2"/>
+  <text x="976" y="163" font-family="Consolas, monospace" font-size="11" font-weight="700" fill="#FF715B">01</text>
+  <circle cx="1172" cy="176" r="16" fill="#151611" stroke="#4169E1" stroke-width="2"/>
+  <text x="1163" y="182" font-family="Consolas, monospace" font-size="11" font-weight="700" fill="#8FA6FF">02</text>
+  <rect x="936" y="298" width="260" height="28" rx="8" fill="#262920"/>
+  <text x="950" y="318" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#C9FF56">MUST-HAVES: 5 / 5</text>
+  <rect x="936" y="118" width="300" height="226" rx="24" stroke="#C9FF56" stroke-width="8" stroke-opacity="0.9"/>
+</svg>
+

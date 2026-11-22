@@ -1,0 +1,56 @@
+=== Northstar Labs | Machine Learning Intern ===
+Company: Northstar Labs
+Role: Machine Learning Intern
+Location: Shanghai / hybrid
+Salary: 250–350 CNY per day
+Deadline: 2026-12-10
+
+About the role
+Help the recommendation team build and evaluate models for a growing consumer product.
+
+Requirements:
+- Strong Python and SQL, with working knowledge of pandas and scikit-learn.
+- Experience designing or analyzing A/B tests and explaining statistical results.
+- Build clear data visualizations for product stakeholders.
+- Comfortable communicating in English.
+- Curiosity, ownership, and problem-solving.
+
+Preferred:
+- PyTorch
+- LLM application experience
+
+=== BrightCart | Analytics Intern ===
+Company: BrightCart
+Role: Analytics Intern
+Location: Remote
+Salary: Competitive salary
+
+Responsibilities
+Own weekly reporting for the growth team.
+
+Requirements:
+- Advanced Excel and SQL.
+- Build dashboards in Tableau.
+- Strong communication and stakeholder management.
+- Experience with product analytics and experimentation.
+
+Preferred:
+- Python
+- Data storytelling
+
+=== PixelForge | Frontend Engineering Intern ===
+Company: PixelForge
+Role: Frontend Engineering Intern
+Location: Beijing
+Salary: 200 CNY per day
+
+Requirements:
+- Expert TypeScript and React.
+- Build accessible interfaces with HTML, CSS, and user research input.
+- Ship production UI in a fast-moving team. We wear many hats.
+- Immediate start preferred.
+
+Preferred:
+- Next.js
+- Figma and prototyping
+
