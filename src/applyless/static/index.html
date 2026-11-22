@@ -157,13 +157,28 @@
         </div>
       </div>
 
+      <div class="result-overview" id="resultOverview" aria-label="Shortlist summary"></div>
+
       <div class="shortlist-layout">
         <aside class="ranking-panel" aria-labelledby="ranking-title">
           <div class="ranking-heading">
-            <h3 id="ranking-title">Ranked roles</h3>
-            <span>Select a role</span>
+            <div>
+              <h3 id="ranking-title">Ranked roles</h3>
+              <span id="rankingCount">0 roles</span>
+            </div>
+          </div>
+          <label class="role-search" for="roleSearch">
+            <span aria-hidden="true">⌕</span>
+            <input id="roleSearch" type="search" placeholder="Search roles or companies" autocomplete="off">
+          </label>
+          <div class="filter-tabs" id="filterTabs" role="group" aria-label="Filter roles">
+            <button type="button" class="filter-tab active" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="filter-tab" data-filter="strong" aria-pressed="false">Strong fit</button>
+            <button type="button" class="filter-tab" data-filter="gaps" aria-pressed="false">Has gaps</button>
+            <button type="button" class="filter-tab" data-filter="risks" aria-pressed="false">Risks</button>
           </div>
           <div id="rankingList" class="ranking-list"></div>
+          <p id="rankingEmpty" class="ranking-empty" hidden>No roles match this view.</p>
         </aside>
         <article id="jobDetail" class="job-detail" aria-live="polite"></article>
       </div>

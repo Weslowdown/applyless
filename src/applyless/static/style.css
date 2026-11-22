@@ -761,6 +761,50 @@ textarea::placeholder {
   gap: 9px;
 }
 
+.result-overview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  margin-bottom: 14px;
+}
+
+.overview-card {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.overview-card strong,
+.overview-card span {
+  display: block;
+}
+
+.overview-card strong {
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 1.3rem;
+  letter-spacing: -0.05em;
+}
+
+.overview-card span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.overview-card.accent {
+  border-color: #cddc9c;
+  background: #f5ffdf;
+}
+
+.overview-card.warning {
+  border-color: #efcfb7;
+  background: #fff8f0;
+}
+
 .shortlist-layout {
   display: grid;
   grid-template-columns: 340px minmax(0, 1fr);
@@ -782,10 +826,7 @@ textarea::placeholder {
 }
 
 .ranking-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 0 7px 13px;
+  padding: 0 7px 11px;
 }
 
 .ranking-heading h3 {
@@ -795,8 +836,89 @@ textarea::placeholder {
 }
 
 .ranking-heading span {
+  display: block;
+  margin-top: 2px;
   color: var(--muted);
   font-size: 0.67rem;
+}
+
+.role-search {
+  display: grid;
+  grid-template-columns: 17px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-height: 39px;
+  margin: 0 5px 10px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.role-search:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(89, 108, 255, 0.09);
+}
+
+.role-search span {
+  font-size: 1rem;
+}
+
+.role-search input {
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.76rem;
+}
+
+.role-search input::placeholder {
+  color: #92998f;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 5px;
+  margin: 0 5px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-tab {
+  flex: 0 0 auto;
+  min-height: 29px;
+  padding: 0 9px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.filter-tab:hover {
+  color: var(--ink);
+}
+
+.filter-tab.active {
+  border-color: var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+
+.ranking-empty {
+  margin: 20px 9px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 .ranking-list {
@@ -897,6 +1019,16 @@ textarea::placeholder {
 .job-detail {
   min-width: 0;
   padding: 30px;
+}
+
+.detail-empty {
+  min-height: 380px;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
 }
 
 .detail-top {
@@ -1312,6 +1444,10 @@ body[data-demo="evidence"] .method-section {
     flex-wrap: wrap;
   }
 
+  .result-overview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .shortlist-layout {
     grid-template-columns: 290px minmax(0, 1fr);
   }
@@ -1428,6 +1564,10 @@ body[data-demo="evidence"] .method-section {
     border-right: 0;
     border-bottom: 1px solid var(--line);
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .filter-tabs {
+    padding-bottom: 2px;
   }
 
   .ranking-list {

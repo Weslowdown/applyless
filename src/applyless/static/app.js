@@ -12,14 +12,21 @@ const sampleButton = document.querySelector("#sampleButton");
 const heroSample = document.querySelector("#heroSample");
 const resultsSection = document.querySelector("#results");
 const resultMeta = document.querySelector("#resultMeta");
+const resultOverview = document.querySelector("#resultOverview");
 const rankingList = document.querySelector("#rankingList");
+const rankingCount = document.querySelector("#rankingCount");
+const rankingEmpty = document.querySelector("#rankingEmpty");
+const roleSearch = document.querySelector("#roleSearch");
+const filterTabs = document.querySelector("#filterTabs");
 const jobDetail = document.querySelector("#jobDetail");
 const copyButton = document.querySelector("#copyButton");
 const downloadButton = document.querySelector("#downloadButton");
 
 let latestResult = null;
 let latestSamplePromise = null;
-let selectedJobIndex = 0;
+let selectedJobRank = null;
+let activeFilter = "all";
+let searchQuery = "";
 const demoMode = new URLSearchParams(window.location.search).get("demo");
 if (demoMode) document.body.dataset.demo = demoMode;
 
@@ -134,14 +141,48 @@ async function score(scroll = true) {
   }
 }
 
-function renderRanking(jobs) {
+function visibleJobs() {
+  if (!latestResult) return [];
+  const query = searchQuery.trim().toLowerCase();
+  return latestResult.jobs.filter((job) => {
+    if (
+      query
+      && !`${job.title} ${job.company} ${job.location}`
+        .toLowerCase()
+        .includes(query)
+    ) {
+      return false;
+    }
+    if (activeFilter === "strong") return job.label === "Strong fit";
+    if (activeFilter === "gaps") return job.missing_must.length > 0;
+    if (activeFilter === "risks") return job.red_flags.length > 0;
+    return true;
+  });
+}
+
+function renderRanking() {
+  const jobs = visibleJobs();
   rankingList.replaceChildren();
-  jobs.forEach((job, index) => {
+  rankingCount.textContent = `${jobs.length} of ${latestResult.jobs.length} roles`;
+  rankingEmpty.hidden = jobs.length > 0;
+
+  if (!jobs.some((job) => job.rank === selectedJobRank)) {
+    selectedJobRank = jobs[0]?.rank ?? null;
+    if (jobs[0]) {
+      renderDetail(jobs[0]);
+    } else {
+      jobDetail.replaceChildren(
+        element("p", "detail-empty", "No roles match this search and filter."),
+      );
+    }
+  }
+
+  jobs.forEach((job) => {
     const button = element("button", "ranking-item");
     button.type = "button";
-    button.dataset.index = String(index);
+    button.dataset.rank = String(job.rank);
     button.setAttribute("aria-label", `${job.title} at ${job.company}, score ${job.score}`);
-    button.setAttribute("aria-pressed", String(index === selectedJobIndex));
+    button.setAttribute("aria-pressed", String(job.rank === selectedJobRank));
 
     const score = element("span", "ranking-score", job.score);
     const copy = element("span", "ranking-copy");
@@ -156,7 +197,16 @@ function renderRanking(jobs) {
     );
 
     button.append(score, copy, gapCount);
-    button.addEventListener("click", () => selectJob(index));
+    button.addEventListener("click", () => selectJob(job.rank));
+    button.addEventListener("keydown", (event) => {
+      if (!["ArrowDown", "ArrowUp"].includes(event.key)) return;
+      event.preventDefault();
+      const buttons = [...rankingList.querySelectorAll(".ranking-item")];
+      const offset = event.key === "ArrowDown" ? 1 : -1;
+      const next = buttons[buttons.indexOf(button) + offset];
+      next?.focus();
+      next?.click();
+    });
     rankingList.append(button);
   });
 }
@@ -285,28 +335,55 @@ function renderDetail(job) {
   jobDetail.append(actionSection(job.next_actions));
 }
 
-function selectJob(index) {
-  if (!latestResult?.jobs?.[index]) return;
-  selectedJobIndex = index;
+function selectJob(rank) {
+  const job = latestResult?.jobs?.find((item) => item.rank === rank);
+  if (!job) return;
+  selectedJobRank = rank;
   for (const button of rankingList.querySelectorAll(".ranking-item")) {
-    button.setAttribute("aria-pressed", String(Number(button.dataset.index) === index));
+    button.setAttribute("aria-pressed", String(Number(button.dataset.rank) === rank));
   }
-  renderDetail(latestResult.jobs[index]);
+  renderDetail(job);
+}
+
+function renderOverview(jobs) {
+  const strong = jobs.filter((job) => job.label === "Strong fit").length;
+  const gaps = jobs.filter((job) => job.missing_must.length > 0).length;
+  const risks = jobs.filter((job) => job.red_flags.length > 0).length;
+  resultOverview.replaceChildren();
+  for (const [value, label, className] of [
+    [jobs.length, "roles ranked", ""],
+    [strong, "strong fits", "accent"],
+    [gaps, "roles with gaps", "warning"],
+    [risks, "roles with risks", ""],
+  ]) {
+    const card = element("div", `overview-card ${className}`.trim());
+    card.append(element("strong", "", value), element("span", "", label));
+    resultOverview.append(card);
+  }
 }
 
 function renderResults(result, scroll = true) {
-  selectedJobIndex = 0;
+  selectedJobRank = result.jobs[0]?.rank ?? null;
+  activeFilter = "all";
+  searchQuery = "";
+  roleSearch.value = "";
+  for (const tab of filterTabs.querySelectorAll(".filter-tab")) {
+    const active = tab.dataset.filter === "all";
+    tab.classList.toggle("active", active);
+    tab.setAttribute("aria-pressed", String(active));
+  }
   const top = result.jobs[0];
   resultMeta.textContent =
     `${result.jobs.length} roles ranked · top match: ${top.title} at ${top.company} · processed locally`;
-  renderRanking(result.jobs);
+  renderOverview(result.jobs);
+  renderRanking();
   renderDetail(top);
   resultsSection.hidden = false;
   if (scroll) resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 async function copyTopSummary() {
-  const job = latestResult?.jobs?.[selectedJobIndex];
+  const job = latestResult?.jobs?.find((item) => item.rank === selectedJobRank);
   if (!job) return;
   const gaps = job.missing_must.length
     ? `Must-have gaps: ${job.missing_must.join(", ")}.`
@@ -340,6 +417,21 @@ sampleButton.addEventListener("click", () => loadSample());
 heroSample.addEventListener("click", () => loadSample());
 copyButton.addEventListener("click", copyTopSummary);
 downloadButton.addEventListener("click", downloadJson);
+roleSearch.addEventListener("input", () => {
+  searchQuery = roleSearch.value;
+  renderRanking();
+});
+filterTabs.addEventListener("click", (event) => {
+  const tab = event.target.closest(".filter-tab");
+  if (!tab) return;
+  activeFilter = tab.dataset.filter;
+  for (const item of filterTabs.querySelectorAll(".filter-tab")) {
+    const active = item === tab;
+    item.classList.toggle("active", active);
+    item.setAttribute("aria-pressed", String(active));
+  }
+  renderRanking();
+});
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   score();
