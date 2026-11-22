@@ -69,6 +69,18 @@ applyless serve --open
 The app opens at `http://127.0.0.1:8765`. Click **Load sample** to try the
 fictional demo without using personal data.
 
+On Windows, the included launcher also keeps Python, pip, npm, and temporary
+build caches on `D:`:
+
+```powershell
+.\scripts\run.ps1
+```
+
+Or double-click `scripts\run.cmd`. The launcher creates the project virtual
+environment beside the repository and uses `D:\ProjectCaches` for package and
+bytecode caches. Change `$CacheRoot` in the launcher if D is not your preferred
+drive.
+
 To read PDF resumes locally, install the optional parser:
 
 ```bash
@@ -173,6 +185,8 @@ Run the tests with no third-party test runner:
 ```bash
 python -m unittest discover -s tests -v
 ```
+
+On Windows, `.\scripts\test.ps1` also keeps caches off the system drive.
 
 Run the local server from source:
 
